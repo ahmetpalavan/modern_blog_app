@@ -6,10 +6,10 @@ const categories = [{name:'React', slug:'react'}, {name:'Web Development', slug:
 const Header = () => {
     return (
         <div className='container mx-auto px-10 mb-8'>
-            <div className='border-b  inline-block border-blue-400 w-full py-8'>
+            <div className='border-b  inline-block  border-green-900 w-full py-8'>
                 <div className='md:float-left block'>
                     <Link href='/'>
-                        <span className='cursor-pointer text-red-800 text-4xl font-bold'>GraphPALAVAN</span>
+                        <span className='cursor-pointer text-green-200 text-4xl font-bold'>PALAVAN</span>
                     </Link>
                 </div>
                 <div className='hidden md:float-left md:contents '>
