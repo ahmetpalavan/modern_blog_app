@@ -1,13 +1,14 @@
 
-import { GraphQLClient, gql } from "graphql-request"
+import {  gql, GraphQLClient } from "graphql-request"
 
-const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT
+const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
+const graphcmsToken = process.env.GRAPHCMS_TOKEN;
 
 export default async function comments(req,res){
-  const {name, email, comment, slug} = req.body;
-  const graphQLClient = new graphQLClient(graphqlAPI,{
+  console.log({graphcmsToken});
+  const graphQLClient = new GraphQLClient(graphqlAPI,{
     headers:{
-      authorization: `Bearer ${process.env.GRAPHCMS_TOKEN}`,
+      authorization: `Bearer ${graphcmsToken}`
     }
   })
   const query = gql `
@@ -15,6 +16,13 @@ export default async function comments(req,res){
       createComment(data : {name: $name, email: $email, comment: $comment, post : {connect: { slug: $slug  }}}) {id}
     }
   `
-  const result = await graphQLClient.request(query, req.body)
-  return res.status(200).send(result)
-}
+  try {
+    const result = await graphQLClient.request (query, req.body)
+    return res.status(200).send(result)
+    
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send(error)
+
+  }
+} 

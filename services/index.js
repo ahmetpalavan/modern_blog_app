@@ -124,10 +124,11 @@ export const getCategories = async () => {
     return result.categories
 }
 
-export const ahmetComment = async (obj) =>{
-    const fener = await fetch('/api/comments',{
+export const submitComment = async (obj) =>{
+    const result = await fetch('/api/comments',{
         method: 'POST',
+        headers: {'Content-Type' : 'application/json'},
         body: JSON.stringify(obj),
     })
-    return fener.json();
+    return result.json();
 }
