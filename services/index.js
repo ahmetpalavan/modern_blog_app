@@ -123,3 +123,11 @@ export const getCategories = async () => {
     const result = await request(graphqlAPI, query)
     return result.categories
 }
+
+export const ahmetComment = async (obj) =>{
+    const fener = await fetch('/api/comments',{
+        method: 'POST',
+        body: JSON.stringify(obj),
+    })
+    return fener.json();
+}

@@ -11,7 +11,7 @@ const PostWidget = ({ categories, slug}) => {
             getRecentPosts().then((result)=>setRelatedPosts(result))
         }
     },[slug])
-    console.log(relatedPosts);
+    // console.log('12',relatedPosts);
     return (
         <div className='bg-white p-8 mb-8 shadow-lg rounded-lg'>
             <h3 className=' text-xl mb-8 font-semibold border-b pb-4'>
@@ -24,7 +24,7 @@ const PostWidget = ({ categories, slug}) => {
                     </div>
                     <div className='flex-grow ml-4'>
                         <p className='font-xs text-gray-500'>
-                            {moment(post.createdAt).format('MMM DD, YYYY')}
+                            {post.createdAt ? moment(post.createdAt).format('MMM DD, YYYY'): ''}
                         </p>
                         <Link href={`/post/${post.slug}`} key={post.title} className='text-md'>
                             {post.title}
